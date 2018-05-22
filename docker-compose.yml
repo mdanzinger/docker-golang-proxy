@@ -1,0 +1,34 @@
+version: '2'
+
+services:
+  app:
+    build: "./app"
+    tty: true
+    environment:
+      - VIRTUAL_HOST=app.localhost
+    expose:
+      - "3005"
+
+  nginx-proxy:
+      image: jwilder/nginx-proxy
+      container_name: nginx-proxy
+      ports:
+        - "80:80"
+      volumes:
+        - /var/run/docker.sock:/tmp/docker.sock:ro
+
+
+#  app2:
+#    build: "./app"
+#    tty: true
+#    expose:
+#      - "3005"
+#
+#  proxy:
+#    build: "./nginx"
+#    tty: true
+#    ports:
+#      - "8080:8080"
+#    links:
+#      - app
+#      - app2

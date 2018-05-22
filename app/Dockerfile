@@ -1,0 +1,5 @@
+FROM scratch
+ADD main ./
+ENV PORT 3005
+EXPOSE 3005
+ENTRYPOINT ["/main"]
